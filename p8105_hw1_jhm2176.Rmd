@@ -9,21 +9,21 @@ output: github_document
 library(tidyverse)
 ```
 
-# Problem 1
+## Problem 1
 
-First, I will load the penguin dataset:
+First, I will load the "penguins" dataset:
 
 ```{r load}
 data("penguins", package = "palmerpenguins") #load
 ```
-## Data Overview
+### Data Overview
 The data in this dataset includes information about penguins, measured across `r ncol(penguins)` variables. 
 
 There are `r nrow(penguins)` observations (rows) and `r ncol(penguins)` variables (columns) in the data set. Variables include species, island, bill length (mm), bill depth (mm), flipper length (mm), body mass (g), sex, and year.
 
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm.
 
-## Scatterplot
+### Scatterplot
 ```{r scatter, message = FALSE, warning = FALSE}
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() #plot
 
@@ -31,7 +31,7 @@ ggsave("scatter_plot.pdf") #save
 ```
 This scatterplot displays the relationship between bill length (mm) and flipper length (mm) for penguins in the data set, color coded by species. Overall, the scatterplot displays a moderately strong, positive relationship between bill length and flipper length among penguins in our data set.
 
-# Problem 2
+## Problem 2
 
 For this problem, I will first create a data frame comprised of:
 
@@ -43,25 +43,37 @@ For this problem, I will first create a data frame comprised of:
 ```{r data frame}
 p2_df = tibble(
   norm_samp = rnorm(10),
-  norm_samp_lv = norm_samp > 0,
+  vec_log = norm_samp > 0,
   vec_char = c("low", "medium", "high", "high", "low", "medium", "medium", "low", "high", "medium"),
   vec_fac = factor(vec_char, levels = c("low", "medium", "high"))
   )
+
+print(p2_df)
 ```
 
+### Variable Means
 Now I will try to take the mean of each variable:
 
 ```{r means}
 mean(pull(p2_df, norm_samp))
-mean(pull(p2_df, norm_samp_lv))
+mean(pull(p2_df, vec_log))
 mean(pull(p2_df, vec_char))
 mean(pull(p2_df, vec_fac))
 ```
 
-Using this code, I can see the mean of the random sample (norm_samp) and logical vector (norm_samp_lv). These are -0.4 and 0.3, respectively. This code does **not** work for the character vector (vec_char) and factor vector (vec_fac) because these variables are not numeric or logical.
+Using this code, I can generate the mean of the numeric vector (norm_samp) and logical vector (vec_log). This code does **not** work for the character vector (vec_char) and factor vector (vec_fac).
 
+### Converting Variables
 
+In some cases, R can explicitly convert variables from one type to another. Here I will apply the *as.numeric()* function to the logical, character, and factor variables:
 
+```{r convert, eval = FALSE}
+as.numeric(p2_df$vec_log)
+as.numeric(p2_df$vec_char)
+as.numeric(p2_df$vec_fac)
+```
 
+The *as.numeric()* function successfully converts the logical (vec_log) and factor vectors (vec_fac) into numeric vectors. The character vector (vec_char) does not convert successfully and results in a string of "NA".
 
+This helps explain my results above when taking means for each variable in the {r means} code chunk. It did **not** work for the character vector and factor vector because these variables were not numeric or logical. After coercion, however, the mean of the converted factor vector is `r mean(as.numeric(p2_df$vec_fac))`.
 
