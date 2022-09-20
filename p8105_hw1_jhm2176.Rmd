@@ -29,7 +29,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)
 
 ggsave("scatter_plot.pdf") #save
 ```
-This scatterplot displays the relationship between bill length (mm) and flipper length (mm) for penguins in the data set, color coded by species. Overall, the scatterplot displays a moderately strong, positive relationship between bill length and flipper length.
+This scatterplot displays the relationship between bill length (mm) and flipper length (mm) for penguins in the data set, color coded by species. Overall, the scatterplot displays a moderately strong, positive relationship between bill length and flipper length among penguins in our data set.
 
 # Problem 2
 
@@ -47,9 +47,6 @@ p2_df = tibble(
   vec_char = c("low", "medium", "high", "high", "low", "medium", "medium", "low", "high", "medium"),
   vec_fac = factor(vec_char, levels = c("low", "medium", "high"))
   )
-
-nlevels(p2_df$vec_fac)
-print(p2_df)
 ```
 
 Now I will try to take the mean of each variable:
@@ -61,7 +58,10 @@ mean(pull(p2_df, vec_char))
 mean(pull(p2_df, vec_fac))
 ```
 
-* The mean of the sample is `r mean(pull(p2_df, norm_samp))`
-* The mean of the sample is `r mean(pull(p2_df, norm_samp_lv))`
-* The mean of the sample is `r mean(pull(p2_df, vec_char))`
-* The mean of the sample is `r mean(pull(p2_df, vec_fac))`
+Using this code, I can see the mean of the random sample (norm_samp) and logical vector (norm_samp_lv). These are -0.4 and 0.3, respectively. This code does **not** work for the character vector (vec_char) and factor vector (vec_fac) because these variables are not numeric or logical.
+
+
+
+
+
+
