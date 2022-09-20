@@ -75,5 +75,5 @@ as.numeric(p2_df$vec_fac)
 
 The *as.numeric()* function successfully converts the logical (vec_log) and factor vectors (vec_fac) into numeric vectors. The character vector (vec_char) does not convert successfully and results in a string of "NA".
 
-This helps explain my results above when taking means for each variable in the {r means} code chunk. It did **not** work for the character vector and factor vector because these variables were not numeric or logical. After coercion, however, the mean of the converted factor vector is `r mean(as.numeric(p2_df$vec_fac))`.
+This helps explain my results above when taking means for each variable in the {r means} code chunk. It did **not** work for the character vector and factor vector because these variables were not numeric or logical. After coercion, however, the mean of the converted factor vector can be taken and is returned as `r mean(as.numeric(p2_df$vec_fac))`.
 
