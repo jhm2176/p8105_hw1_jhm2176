@@ -40,11 +40,28 @@ For this problem, I will first create a data frame comprised of:
 * a character vector of length 10
 * a factor vector of length 10, with 3 different factor “levels”
 
-```{r}
+```{r data frame}
 p2_df = tibble(
   norm_samp = rnorm(10),
   norm_samp_lv = norm_samp > 0,
-  char_vec = vector(mode = "character" , length = 10)
-  abs_norm_samp = abs(norm_samp)
-)
+  vec_char = c("low", "medium", "high", "high", "low", "medium", "medium", "low", "high", "medium"),
+  vec_fac = factor(vec_char, levels = c("low", "medium", "high"))
+  )
+
+nlevels(p2_df$vec_fac)
+print(p2_df)
 ```
+
+Now I will try to take the mean of each variable:
+
+```{r means}
+mean(pull(p2_df, norm_samp))
+mean(pull(p2_df, norm_samp_lv))
+mean(pull(p2_df, vec_char))
+mean(pull(p2_df, vec_fac))
+```
+
+* The mean of the sample is `r mean(pull(p2_df, norm_samp))`
+* The mean of the sample is `r mean(pull(p2_df, norm_samp_lv))`
+* The mean of the sample is `r mean(pull(p2_df, vec_char))`
+* The mean of the sample is `r mean(pull(p2_df, vec_fac))`
