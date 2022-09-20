@@ -5,6 +5,10 @@ date: September 24, 2022
 output: github_document
 ---
 
+```{r setup, include = FALSE}
+library(tidyverse)
+```
+
 # Problem 1
 
 Here I will load the penguin dataset:
@@ -13,9 +17,15 @@ Here I will load the penguin dataset:
 data("penguins", package = "palmerpenguins")
 print(penguins)
 ```
-The data in this dataset includes information about penguins. Variables include species, island, bill length (mm), bill depth (mm), flipper length (mm), body mass (g), sex, and year. There are 344 observations (rows) and 8 variables (columns) in the data set.
+The data in this dataset includes information about penguins. 
 
-The mean flipper length is `r mean(penguins$x5, na.rm = TRUE)` mm.
+Variables for each observation include species, island, bill length (mm), bill depth (mm), flipper length (mm), body mass (g), sex, and year. There are 344 observations (rows) and 8 variables (columns) in the data set.
+
+The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm.
+
+```{r scatter}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+```
 
 # Problem 2
 
