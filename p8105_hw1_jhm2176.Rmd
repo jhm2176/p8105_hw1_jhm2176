@@ -1,6 +1,7 @@
 ---
 title: "Homework 1"
 author: Jenesis Merriman
+date: September 24,2022
 output: github_document
 ---
 
@@ -12,21 +13,20 @@ library(tidyverse)
 
 First, I will load the penguin dataset:
 
-```{r}
+```{r load}
 data("penguins", package = "palmerpenguins") #load
-
-print(penguins) #display
 ```
 ## Data Overview
-The data in this dataset includes information about penguins. 
+The data in this dataset includes information about penguins, measured across `r ncol(penguins)` variables. 
 
-Variables for each observation include species, island, bill length (mm), bill depth (mm), flipper length (mm), body mass (g), sex, and year. There are 344 observations (rows) and 8 variables (columns) in the data set.
+There are `r nrow(penguins)` observations (rows) and `r ncol(penguins)` variables (columns) in the data set. Variables include species, island, bill length (mm), bill depth (mm), flipper length (mm), body mass (g), sex, and year.
 
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm.
 
 ## Scatterplot
-```{r scatter}
+```{r scatter, message = FALSE, warning = FALSE}
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+ggsave("scatter_plot.pdf")
 ```
 This scatterplot displays the relationship between bill length (mm) and flipper length (mm) for penguins in the data set, color coded by species. Overall, the scatterplot displays a moderately strong, positive relationship between bill length and flipper length.
 
