@@ -10,7 +10,7 @@ library(tidyverse)
 
 # Problem 1
 
-Here I will load the penguin dataset:
+First, I will load the penguin dataset:
 
 ```{r}
 data("penguins", package = "palmerpenguins") #load
