@@ -25,12 +25,26 @@ The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm
 
 ## Scatterplot
 ```{r scatter, message = FALSE, warning = FALSE}
-ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
-ggsave("scatter_plot.pdf")
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() #plot
+
+ggsave("scatter_plot.pdf") #save
 ```
 This scatterplot displays the relationship between bill length (mm) and flipper length (mm) for penguins in the data set, color coded by species. Overall, the scatterplot displays a moderately strong, positive relationship between bill length and flipper length.
 
 # Problem 2
 
-I can take the mean of the sample, too!
-The mean is `r mean(sample)`.
+For this problem, I will first create a data frame comprised of:
+
+* a random sample of size 10 from a standard Normal distribution
+* a logical vector indicating whether elements of the sample are greater than 0
+* a character vector of length 10
+* a factor vector of length 10, with 3 different factor “levels”
+
+```{r}
+p2_df = tibble(
+  norm_samp = rnorm(10),
+  norm_samp_lv = norm_samp > 0,
+  char_vec = vector(mode = "character" , length = 10)
+  abs_norm_samp = abs(norm_samp)
+)
+```
