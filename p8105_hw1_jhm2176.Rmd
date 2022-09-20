@@ -5,16 +5,15 @@ date: September 24, 2022
 output: github_document
 ---
 
-# Section 1
+# Problem 1
 
-Here's a **code chunk**:
+Here I will load the penguin dataset:
 
 ```{r}
-samp = rnorm(100)
-length(samp)
+data("penguins", package = "palmerpenguins")
 ```
 
-# Section 2
+# Problem 2
 
 I can take the mean of the sample, too!
 The mean is `r mean(samp)`.
