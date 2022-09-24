@@ -24,12 +24,15 @@ There are `r nrow(penguins)` observations (rows) and `r ncol(penguins)` variable
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm.
 
 ### Scatterplot
+
+The following scatterplot displays the relationship between bill length (mm) and flipper length (mm) for penguins in the data set, color coded by species. 
+
 ```{r scatter, message = FALSE, warning = FALSE}
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() #plot
 
 ggsave("scatter_plot.pdf") #save
 ```
-This scatterplot displays the relationship between bill length (mm) and flipper length (mm) for penguins in the data set, color coded by species. Overall, the scatterplot displays a moderately strong, positive relationship between bill length and flipper length among penguins in our data set.
+Overall, the scatterplot displays a moderately strong, positive relationship between bill length and flipper length among penguins in our data set.
 
 ## Problem 2
 
